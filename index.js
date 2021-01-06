@@ -48,5 +48,14 @@ client.on('message', async (message) => {
 
 client
   .login(process.env.TOKEN)
-  .then((_) => console.log('Ready!'))
+  .then((_) => {
+    console.log('Ready!');
+
+    client.user.setPresence({
+      activity: {
+        name: 'help | beep boop',
+        type: 'PLAYING',
+      },
+    });
+  })
   .catch(console.log);
