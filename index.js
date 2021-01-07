@@ -4,11 +4,19 @@ const fs = require('fs');
 //additional modules
 require('dotenv').config();
 
+const config = require('./config.json');
+
 //project specific modules & variables
-const { Client, Collection } = require('discord.js');
-const client = new Client();
-const PREFIX = process.env.PREFIX | '!r';
+const { Collection } = require('discord.js');
+const Client = require('./client/Client');
+
+const client = new Client(config);
+
+// const PREFIX = process.env.PREFIX || '_';
+const PREFIX = config.prefix;
+
 client.commands = new Collection();
+
 const commandFiles = fs
   .readdirSync('./commands')
   .filter((file) => file.endsWith('.js'));
@@ -49,13 +57,16 @@ client.on('message', async (message) => {
 client
   .login(process.env.TOKEN)
   .then((_) => {
-    console.log('Ready!');
-
+    // console.log('Ready!');
     client.user.setPresence({
       activity: {
-        name: 'help | beep boop',
+        name: `${PREFIX}help | beep boop`,
         type: 'PLAYING',
       },
     });
   })
   .catch(console.log);
+
+process.on('unhandledRejection', (error) => {
+  console.error('Unhandled promise rejection:', error);
+});

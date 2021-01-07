@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js');
+const { PREFIX } = require('./../utils/constants');
 
 module.exports = {
   name: 'help',
@@ -7,19 +8,27 @@ module.exports = {
     const embed = new MessageEmbed().setTitle('Commands').addFields(
       {
         name: 'avatar',
-        value: 'rat avatar <@username> | rat avatar',
+        value: `${PREFIX}avatar <@username> | ${PREFIX}avatar`,
       },
       {
         name: 'roll',
-        value: 'rat roll | rat roll <from> <to>',
+        value: `${PREFIX}roll | ${PREFIX}roll <from> <to>`,
       },
       {
         name: 'play',
-        value: 'rat play <youtube_link>',
+        value: `${PREFIX}play <youtube_link>`,
+      },
+      {
+        name: 'stop',
+        value: `${PREFIX}stop`,
+      },
+      {
+        name: 'skip',
+        value: `${PREFIX}skip`,
       },
       {
         name: 'define',
-        value: 'rat define <word>',
+        value: `${PREFIX}define <word>`,
       }
     );
     message.channel.send(embed);

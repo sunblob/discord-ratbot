@@ -7,8 +7,12 @@ module.exports = {
     if (!args[0] && !args[1]) {
       const number = _.random(0, 100);
       return message.reply(`Your number is: ${number}`);
+    } else if (args.length === 1 && args[0]) {
+      const number = _.random(0, args[0]);
+      return message.reply(`Your number is: ${number}`);
+    } else {
+      const number = _.random(args[0], args[1]);
+      return message.reply(`Your number is: ${number}`);
     }
-    const number = _.random(args[0], args[1]);
-    message.reply(`Your number is: ${number}`);
   },
 };

@@ -8,7 +8,7 @@ module.exports = {
       .setImage(
         'https://memepedia.ru/wp-content/uploads/2019/10/stinki-manki.jpg'
       )
-      .setTitle('Monke');
+      .setTitle('Dima');
     message.channel.send(embed);
   },
 };
