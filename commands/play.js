@@ -1,5 +1,5 @@
-// const ytdl = require('ytdl-core-discord')
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl-core-discord');
+// const ytdl = require('ytdl-core');
 
 module.exports = {
   name: 'play',
@@ -14,7 +14,9 @@ module.exports = {
       return message.channel
         .send('You need to be in a voice channel to play music!')
         .then((msg) => msg.delete({ timeout: 30000 }));
+
     const permissions = voiceChannel.permissionsFor(message.client.user);
+
     if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
       return message.channel
         .send('I need the permissions to join and speak in your voice channel!')
@@ -46,7 +48,7 @@ module.exports = {
         // console.log(queueContract);
         const connection = await voiceChannel.join();
         queueContract.connection = connection;
-        this.play(message, queueContract.songs[0]);
+        await this.play(message, queueContract.songs[0]);
       } catch (err) {
         console.log(err);
         queue.delete(message.guild.id);
@@ -59,7 +61,7 @@ module.exports = {
         .then((msg) => msg.delete({ timeout: 30000 }));
     }
   },
-  play(message, song) {
+  async play(message, song) {
     const queue = message.client.queue;
     const guild = message.guild;
     const serverQueue = queue.get(message.guild.id);
@@ -71,13 +73,15 @@ module.exports = {
     }
 
     const dispatcher = serverQueue.connection
-      .play(ytdl(song.url))
+      .play(await ytdl(song.url), { type: 'opus' })
       .on('finish', () => {
         serverQueue.songs.shift();
         this.play(message, serverQueue.songs[0]);
       })
       .on('error', (error) => console.error(error));
+
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+
     serverQueue.textChannel
       .send(`Start playing: **${song.title}**`)
       .then((msg) => msg.delete({ timeout: 30000 }));

@@ -32,7 +32,12 @@ client.once('ready', () => {
 });
 
 client.on('message', async (message) => {
-  if (!message.content.startsWith(PREFIX) || message.author.bot) return;
+  if (
+    !message.content.startsWith(PREFIX) ||
+    message.author.bot ||
+    !message.guild
+  )
+    return;
 
   const args = message.content.slice(PREFIX.length).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
@@ -55,7 +60,7 @@ client.on('message', async (message) => {
 });
 
 client
-  .login(process.env.TOKEN)
+  .login(config.token)
   .then((_) => {
     // console.log('Ready!');
     client.user.setPresence({

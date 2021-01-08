@@ -1,19 +1,20 @@
 module.exports = {
-  name: 'stop',
-  description: 'Stop all songs in the queue!',
+  name: 'queue',
+  description: 'Show all songs in the queue!',
   execute(message) {
     const serverQueue = message.client.queue.get(message.guild.id);
     if (!message.member.voice.channel)
       return message.channel
-        .send('You have to be in a voice channel to stop the music!')
+        .send('You have to be in a voice channel to see the queue!')
         .then((msg) => msg.delete({ timeout: 30000 }));
 
     if (!serverQueue)
       return message.channel
-        .send('There is no queue that I could stop!')
+        .send('There is no queue that I could show!')
         .then((msg) => msg.delete({ timeout: 30000 }));
 
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end();
+    return message.channel
+      .send(`${serverQueue.songs}`)
+      .then((msg) => msg.delete({ timeout: 30000 }));
   },
 };
