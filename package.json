@@ -23,6 +23,7 @@
         "dotenv": "^8.2.0",
         "ffmpeg-static": "^4.2.7",
         "lodash": "^4.17.20",
+        "moment": "^2.29.1",
         "ytdl-core": "^4.4.1",
         "ytdl-core-discord": "^1.2.5"
     },
