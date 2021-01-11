@@ -11,7 +11,7 @@ const Client = require('./client/Client');
 
 const client = new Client(config);
 
-client.initBot();
+client.startBot();
 
 process.on('unhandledRejection', (error) => {
   console.error('Unhandled promise rejection:', error);

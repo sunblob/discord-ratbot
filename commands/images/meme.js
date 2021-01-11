@@ -7,7 +7,7 @@ module.exports = {
     description: 'sends a picture of a meme!',
     usage: '_meme',
     category: 'images',
-    aliases: ['mem'],
+    aliases: ['mem', 'm'],
   },
   execute: async (bot, message, args) => {
     let msg = await message.channel.send('Generating...');

@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
   config: {
     name: 'cat',
-    description: 'sends a picture of a cat!',
+    description: 'Sends a picture of a cat!',
     usage: '_cat',
     category: 'images',
     aliases: ['catto'],

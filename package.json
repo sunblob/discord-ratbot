@@ -1,10 +1,13 @@
 {
     "name": "discord-rat-bot",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "rat bot",
     "main": "index.js",
     "private": true,
     "scripts": {
+        "start:java": "java -jar lavalink/Lavalink.jar &",
+        "start:bot": "node index.js &",
+        "start:test": "npm run start:java && npm run start:bot",
         "dev": "nodemon index.js",
         "start": "node index.js"
     },
@@ -21,9 +24,12 @@
         "axios": "^0.21.1",
         "discord.js": "^12.5.1",
         "dotenv": "^8.2.0",
+        "erela.js": "^2.3.1",
         "ffmpeg-static": "^4.2.7",
+        "got": "^11.8.1",
         "lodash": "^4.17.20",
         "moment": "^2.29.1",
+        "sequelize": "^6.3.5",
         "ytdl-core": "^4.4.1",
         "ytdl-core-discord": "^1.2.5"
     },
