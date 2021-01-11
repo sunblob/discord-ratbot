@@ -5,11 +5,11 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "start:java": "java -jar lavalink/Lavalink.jar &",
-        "start:bot": "node index.js &",
-        "start:test": "npm run start:java && npm run start:bot",
+        "start:java": "cd lavalink && java -jar Lavalink.jar &",
+        "start:bot": "node index.js",
         "dev": "nodemon index.js",
-        "start": "node index.js"
+        "start": "node index.js",
+        "start:con": "concurrently \"npm run start:bot\" \"npm run start:java\""
     },
     "keywords": [
         "js",
