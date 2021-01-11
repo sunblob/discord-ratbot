@@ -10,9 +10,9 @@ module.exports = {
   config: {
     name: 'apex',
     description: `Information about apex legends user's stats`,
-    usage: '_apex <username>',
+    usage: '_apex <username> <platform>',
     category: 'misc',
-    aliases: ['ax'],
+    aliases: ['ax', 'ap'],
   },
   async execute(bot, message, args) {
     if (!args[0]) {
@@ -53,7 +53,6 @@ module.exports = {
       const rank = res.data.segments[0].stats.rankScore.metadata;
       const kills = res.data.segments[0].stats.kills.value;
       const level = res.data.segments[0].stats.level.value;
-      const damage = res.data.segments[0].stats.damage.value;
 
       const embed = new MessageEmbed()
         .setAuthor(`Apex Legends | ${platformUserIdentifier}`, avatarUrl)
@@ -63,7 +62,7 @@ module.exports = {
         **Rank:** ${rank.rankName}
         **Level:** ${level}
         **Kills:** ${kills}
-        **Damage:** ${damage}`
+        `
         )
         .setTimestamp();
       message.channel.send(embed);

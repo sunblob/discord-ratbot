@@ -45,6 +45,12 @@ module.exports = class extends (
     for (let file of commands) {
       let command = require(`../commands/${dirs}/${file}`);
       this.commands.set(command.config.name, command);
+
+      if (command.config.aliases) {
+        command.config.aliases.forEach((a) =>
+          this.aliases.set(a, command.config.name)
+        );
+      }
     }
   }
 
@@ -65,15 +71,11 @@ module.exports = class extends (
         .split(/ +/);
       const commandName = args.shift().toLowerCase();
 
-      const command = this.commands.get(commandName);
+      const command =
+        this.commands.get(commandName) ||
+        this.commands.get(this.aliases.get(commandName));
 
-      if (!this.commands.has(commandName)) return;
-
-      if (command.args && !args.length) {
-        return message.channel.send(
-          `You didn't provide any arguments, ${message.author}!`
-        );
-      }
+      if (!command) return;
 
       try {
         command.execute(this, message, args);

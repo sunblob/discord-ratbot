@@ -19,9 +19,13 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setAuthor('Current Song Playing.', message.author.displayAvatarURL)
-      .setThumbnail(thumbnail).setDescription(`
+      .setThumbnail(thumbnail)
+      .setDescription(
+        `
             ${player.playing ? '▶️' : '⏸️'} **${title}** - ${uri} by ${author}
-            `);
+            `
+      )
+      .setTimestamp();
 
     return message.channel
       .send(embed)

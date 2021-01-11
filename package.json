@@ -20,18 +20,14 @@
     "author": "sunblob <sunrisehype@gmail.com>",
     "license": "ISC",
     "dependencies": {
-        "@discordjs/opus": "^0.3.3",
         "axios": "^0.21.1",
         "discord.js": "^12.5.1",
         "dotenv": "^8.2.0",
         "erela.js": "^2.3.1",
-        "ffmpeg-static": "^4.2.7",
         "got": "^11.8.1",
         "lodash": "^4.17.20",
         "moment": "^2.29.1",
-        "sequelize": "^6.3.5",
-        "ytdl-core": "^4.4.1",
-        "ytdl-core-discord": "^1.2.5"
+        "sequelize": "^6.3.5"
     },
     "devDependencies": {
         "nodemon": "^2.0.7"
