@@ -11,9 +11,7 @@ const nodes = [
   },
 ];
 
-module.exports = class extends (
-  Client
-) {
+module.exports = class extends Client {
   constructor(config) {
     super({
       disableEveryone: true,
@@ -58,6 +56,13 @@ module.exports = class extends (
     ['misc', 'images', 'music'].forEach((x) => this.load(x));
 
     this.on('message', async (message) => {
+      if (message.author.id === '227099972498096128') {
+        const reactionEmoji = message.guild.emojis.cache.find(
+          (emoji) => emoji.name === 'sportsball'
+        );
+        message.react(reactionEmoji);
+      }
+
       if (
         !message.content.startsWith(this.config.prefix) ||
         message.author.bot ||
